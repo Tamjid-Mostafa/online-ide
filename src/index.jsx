@@ -10,6 +10,7 @@ import { unpkgPathPlugin } from "./plugins/unpkg-path-plugins";
 
 const App = () => {
     const ref = useRef();
+    const iframe = useRef();
     const [input, setInput] = useState('');
     const [code, setCode] = useState('');
 
@@ -43,14 +44,29 @@ const App = () => {
                 global: 'window',
             }
         })
-        setCode(result.outputFiles[0].text);
+        
+        // setCode(result.outputFiles[0].text);
+        iframe.current.contentWindow.postMessage(result.outputFiles[0].text, '*')
 
     };
 
     const html = `
-        <script>
-        ${code}
-        </script>
+        <html>
+            <head></head>
+            <body>
+                <div id="root"></div>
+                <script>
+                 window.addEventListener('message', (event) => {
+                    try {
+                        eval(event.data);
+                    } catch (err) {
+                        const root = document.querySelector('#root');
+                        root.innerHTML = '<div style="color: red;"><h4>Runtime Error</h4>' + err + '</div>'
+                    }
+                  })
+                </script>
+            </body>
+        </html>
     `
 
     return <div>
@@ -66,7 +82,7 @@ const App = () => {
         <pre>
             {code}
         </pre>
-        <iframe sandbox="allow-scripts" srcDoc={html} />
+        <iframe ref={iframe} sandbox="allow-scripts" srcDoc={html} />
     </div>
 }
 
