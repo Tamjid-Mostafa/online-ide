@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import * as esbuild from "esbuild-wasm";
 import { useRef } from "react";
 import { useEffect, useState } from 'react';
@@ -42,17 +43,15 @@ const App = () => {
                 global: 'window',
             }
         })
-
-        // console.log(result);
         setCode(result.outputFiles[0].text);
 
-        try {
-            eval(result.outputFiles[0].text);
-        } catch (error) {
-            alert(error)
-        }
     };
 
+    const html = `
+        <script>
+        ${code}
+        </script>
+    `
 
     return <div>
         <textarea style={{
@@ -67,6 +66,7 @@ const App = () => {
         <pre>
             {code}
         </pre>
+        <iframe sandbox="allow-scripts" srcDoc={html} />
     </div>
 }
 
