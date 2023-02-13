@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import MonacoEditor from '@monaco-editor/react'
 
 const CodeEditor = ({ initialValue, onChange }) => {
+  const editorRef = useRef(null);
 
-  const onEditorDidMount = (getValue, monacoEditor) => {
+  const handleEditorDidMount = ({getValue,editor}) => {
+    editorRef.current = editor; 
     // get db data
-    monacoEditor.onDidChangeModelContent(() => {
+    console.log(editor.getValue());
+    editor.onDidChangeModelContent(() => {
       console.log(getValue());
     })
   }
 
   return (
     <MonacoEditor
-    editorDidMount={onEditorDidMount}
+    onMount={handleEditorDidMount}
     value={initialValue}
     theme="vs-dark"
     language="javascript"
-    height="500px"
+    height="200px"
     options={{
       wordWrap: 'on',
       showUnused: false,
