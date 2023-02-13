@@ -40,7 +40,8 @@ const CodeEditor = ({ initialValue, onChange }) => {
         value={initialValue}
         theme="vs-dark"
         language="javascript"
-        height="200px"
+        height="100%"
+        width="100%"
         options={{
           wordWrap: 'on',
           showUnused: false,
