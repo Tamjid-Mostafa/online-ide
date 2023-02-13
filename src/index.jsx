@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
+import 'bulmaswatch/superhero/bulmaswatch.min.css';
 import * as esbuild from "esbuild-wasm";
 import { useRef } from "react";
 import { useEffect, useState } from 'react';
