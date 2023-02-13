@@ -7,7 +7,9 @@ const Preview = ({code}) => {
     useEffect(() => {
         iframe.current.srcdoc = html;
 
+       setTimeout(() => {
         iframe.current.contentWindow.postMessage(code, '*')
+       }, 50)
       
     }, [code])
     

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import bundle from '../bundler';
 import CodeEditor from './code-editor';
 import Preview from './Preview';
@@ -18,18 +18,30 @@ const CodeCell = () => {
     //     startService();
     // }, []);
 
-    const onClick = async () => {
-        // if (!ref.current) {
-        //     return;
-        // }
 
-
-        // const result = 
+    useEffect(() => {
+      const timer = setTimeout(async() => {
         const output = await bundle(input)
         setCode(output);
+      }, 750)
+      return () => {
+        clearTimeout(timer);
+      }
+    }, [input])
+    
+
+    // const onClick = async () => {
+    //     if (!ref.current) {
+    //         return;
+    //     }
 
 
-    };
+    //     const result = 
+    //     const output = await bundle(input)
+    //     setCode(output);
+
+
+    // };
 
 
 
