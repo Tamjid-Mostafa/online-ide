@@ -3,6 +3,7 @@ import * as esbuild from "esbuild-wasm";
 import { useRef } from "react";
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom'
+import CodeEditor from "./component/code-editor";
 import { fetchPlugin } from "./plugins/fetch-plugin";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugins";
 
@@ -72,6 +73,13 @@ const App = () => {
     `
 
     return <div>
+        <CodeEditor
+        
+        initialValue={'const a = 1;'}
+        onChange={(value) => {
+            setInput(value);
+        }}
+        />
         <textarea style={{
             minHeight: "20vh",
             minWidth: "50vh",
