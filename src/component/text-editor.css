@@ -1,0 +1,35 @@
+.w-md-editor .title {
+  line-height: unset;
+  font-size: unset;
+  font-weight: unset;
+  color: #d4d4d4 !important;
+}
+
+.w-md-editor ul {
+  line-height: 1;
+}
+
+.text-editor .w-md-editor-bar svg {
+  display: block;
+}
+.text-editor .w-md-editor-bar {
+  background-color: #3741414b;
+  cursor: row-resize;
+  height: 11px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: 100%;
+  position: relative;
+}
+
+.text-editor em {
+    font-style: italic;
+}
+
+.text-editor .wmde-markdown hr {
+    border-top:  1px solid #dee5ed;
+
+}
+.text-editor .wmde-markdown ol {
+    list-style: decimal;
+}
