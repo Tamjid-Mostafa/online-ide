@@ -26,7 +26,7 @@ const Resizable = ({ direction, children }) => {
         return () => {
             window.removeEventListener('resize', listener);
         }
-    }, [])
+    })
 
 
     if (direction === 'horizontal') {

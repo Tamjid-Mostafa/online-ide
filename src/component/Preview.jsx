@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import './preview.css'
-const Preview = ({code}) => {
+const Preview = ({code, err}) => {
 
     const iframe = useRef();
 
@@ -12,6 +12,8 @@ const Preview = ({code}) => {
        }, 50)
       
     }, [code])
+
+    console.log(err)
     
 
     const html = `
@@ -53,6 +55,7 @@ const Preview = ({code}) => {
     sandbox="allow-scripts"
     srcDoc={html}
     />
+    {err && <div className='preview-error'>{err}</div>}
    </div>
   )
 }
